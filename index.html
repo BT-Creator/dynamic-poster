@@ -58,12 +58,16 @@
                 "logo logo logo"
                 "quote-2 gun-downside release";
             margin: 1rem 1rem;
+            background: linear-gradient(to left, #0D0404, #021226 50%, #0D0404 100%);
         }
 
         /* Shared */
         * {
             font-family: "Rubik", sans-serif;
             font-optical-sizing: auto;
+            color: #F2F2F2;
+        }:is(svg){
+            fill: #F2F2F2;
         }
         .q-2, .downside, .release {
             align-self: flex-end;
@@ -91,6 +95,7 @@
         }
 
         /* Guns */
+        /* TODO: Scale guns based on screen size */
         .gun {
             height: 10vh;
             width: auto;
@@ -117,6 +122,8 @@
         }
 
         /* Logo */
+        /* TODO: Scale logo based on screen size */
+        /* TODO: Make sure logo always is aligned with bullets */
         main {
             grid-area: logo;
             justify-self: center;
@@ -141,7 +148,7 @@
 
         .logo {
             display: flex;
-            gap: 1rem;
+            gap: 5vw;
         }
         
         /* Release */
