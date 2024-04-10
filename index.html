@@ -46,50 +46,77 @@
         /* 
             CSS STYLING
         */
-        /* Grid & Positioning */
         body{
             display: grid;
             grid-template-columns: 2fr 1fr 2fr;
             grid-template-rows: 1fr 2fr 1fr;
             grid-column-gap: 0px;
             grid-row-gap: 0px;
-            height: 100vh;
+            height: calc(100vh - 2rem);
             grid-template-areas: 
                 "actors gun-upside quote-1"
                 "logo logo logo"
                 "quote-2 gun-downside release";
+            margin: 1rem 1rem;
         }
 
-        .actors {
-            grid-area: actors;
-        }
-
-        .upside {
-            grid-area: gun-upside;
-        }
-
-        .q-1 {
-            grid-area: quote-1;
-        }
-        
-        .q-2 {
-            grid-area: quote-2;
-        }
-
-        .downside {
-            grid-area: gun-downside;
-        }
-        
-        .release {
-            grid-area: release;  
-        }
-
+        /* Shared */
         * {
             font-family: "Rubik", sans-serif;
             font-optical-sizing: auto;
         }
+        .q-2, .downside, .release {
+            align-self: flex-end;
+        }
 
-        /* Other */
+        .release, .q-1 {
+            text-align: right;
+        }
+
+        /* Actors */
+        .actors {
+            grid-area: actors;
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 1em;
+        }:is(.f-name){
+            font-weight: 500;
+            font-size: 1em;
+        }:is(.l-name){
+            font-weight: 700;
+            font-size: 1.5em;
+        }:is(.role){
+            font-weight: 300;
+            font-size: 0.8em;
+        }
+
+        /* Guns */
+        .gun {
+            height: 10vh;
+            width: auto;
+        }:is(.upside) {
+            grid-area: gun-upside;
+            justify-self: flex-end;
+        }:is(.downside) {
+            grid-area: gun-downside;
+            justify-self: flex-start;
+            transform: rotate(180deg);
+        }
+
+        /* Quote */
+        .quote {
+            word-spacing: 100vw;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.5em;
+            font-size: 1.5em;
+        }:is(.q-1) {
+            grid-area: quote-1;
+        }:is(.q-2){
+            grid-area: quote-2;
+        }
+
+        /* Logo */
         main {
             grid-area: logo;
             justify-self: center;
@@ -101,17 +128,10 @@
             padding-bottom: 2rem;
         }
 
-        .q-2, .downside, .release {
-            align-self: flex-end;
-        }
-
-        .release, .q-1 {
-            text-align: right;
-        }
-
-        .gun {
-            height: 10vh;
-            width: auto;
+        main > p {
+            font-size: 1.25em;
+        }:is(span) {
+            font-weight: 700;
         }
 
         .mark {
@@ -119,10 +139,15 @@
             width: auto;
         }
 
-        .downside {
-            transform: rotate(180deg);
+        .logo {
+            display: flex;
+            gap: 1rem;
         }
-
+        
+        /* Release */
+        .release {
+            grid-area: release;  
+        }
     </style>
 </head>
 
@@ -154,7 +179,7 @@
         <p>You are inverted</p>
     </aside>
     <main>
-        <h2>A film by <span>Christopher Nolan</span></h2>
+        <p>A film by <span>Christopher Nolan</span></p>
         <div class="logo">
             <svg class="t-1 mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.98 65.46">
                 <path d="M65.98,7.48h-24.39v57.98h-17.21V7.48H0L3.11,0h59.84l3.03,7.48Z" />
