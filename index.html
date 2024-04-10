@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenet Movie Poster</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
         /* Reset CSS */
         html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time,mark,audio,video {
             margin: 0;
             padding: 0;
             border: 0;
             font-size: 100%;
-            font: inherit;
             vertical-align: baseline;
         }
 
@@ -42,7 +43,10 @@
             border-spacing: 0;
         }
         
-        /* CSS Styling */
+        /* 
+            CSS STYLING
+        */
+        /* Grid & Positioning */
         body{
             display: grid;
             grid-template-columns: 2fr 1fr 2fr;
@@ -56,36 +60,55 @@
                 "quote-2 gun-downside release";
         }
 
-        /* Positioning */
         .actors {
             grid-area: actors;
         }
 
-        .gun .upside {
-            grid-area: gun-upside
+        .upside {
+            grid-area: gun-upside;
         }
 
-        .quote .q-1 {
-            grid-area: quote-1
+        .q-1 {
+            grid-area: quote-1;
         }
-
-        main {
-            grid-area: logo;
-        }
-
-        .quote .q-2 {
+        
+        .q-2 {
             grid-area: quote-2;
         }
 
-        .gun .downside {
+        .downside {
             grid-area: gun-downside;
         }
-
+        
         .release {
-            grid-area: release;
+            grid-area: release;  
         }
 
-        /* Sizing */
+        * {
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+        }
+
+        /* Other */
+        main {
+            grid-area: logo;
+            justify-self: center;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 2rem;
+        }
+
+        .q-2, .downside, .release {
+            align-self: flex-end;
+        }
+
+        .release, .q-1 {
+            text-align: right;
+        }
+
         .gun {
             height: 10vh;
             width: auto;
@@ -99,6 +122,7 @@
         .downside {
             transform: rotate(180deg);
         }
+
     </style>
 </head>
 
