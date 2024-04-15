@@ -155,7 +155,7 @@
             height: auto;
             width: 10vw;
         }:is(.t-2) {
-            animation: glitch-mark 6s linear 3s infinite forwards;
+            animation: glitch 6s linear 3s infinite forwards;
         }
 
         .logo {
@@ -165,7 +165,15 @@
         
         /* Release */
         .release {
-            grid-area: release; 
+            grid-area: release;
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 0.25em;
+        }:is(.pre-amble){
+            font-weight: 500;
+        }:is(.release-date){
+            font-weight: 700;
+            font-size: 1.25rem;
         }
 
         /* Bullets */
@@ -194,7 +202,7 @@
             }
         }
 
-        @keyframes glitch-mark {
+        @keyframes glitch {
             24%{
                 transform: scaleY(1);
             }
