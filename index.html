@@ -96,6 +96,10 @@
         }:is(.role){
             font-weight: 300;
             font-size: 0.8em;
+        }:is(.actor){
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 0.25em;
         }
 
         /* Guns */
@@ -150,8 +154,6 @@
         .mark {
             height: auto;
             width: 10vw;
-        }:hover {
-            transform: scaleY(-1)
         }:is(.t-2) {
             animation: glitch-mark 6s linear 3s infinite forwards;
         }
