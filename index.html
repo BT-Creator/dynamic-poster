@@ -48,7 +48,9 @@
         */
         :root {
             --background-dark: #0D0404;
-            --background-light: #021226
+            --background-light: #021226;
+            --typo-color: #F2F2F2;
+            --bullet-ani-duration: 2s;
         }
 
         body {
@@ -78,9 +80,9 @@
         * {
             font-family: "Rubik", sans-serif;
             font-optical-sizing: auto;
-            color: #F2F2F2;
+            color: var(--typo-color);
         }:is(svg){
-            fill: #F2F2F2;
+            fill: var(--typo-color);
         }
         .q-2, .downside, .release {
             align-self: flex-end;
@@ -184,7 +186,7 @@
         }
         
         .t-2, .t-1 {
-            animation: glitch 4s linear infinite forwards;
+            animation: glitch calc(var(--bullet-ani-duration)*2) linear infinite forwards;
         }
         
         /* Release */
@@ -209,14 +211,14 @@
         .bullet.forwards{
             left: 47.25vw;
             top: 1vh;
-            animation: bullet-forwards 2s linear infinite forwards;
+            animation: bullet-forwards var(--bullet-ani-duration) linear infinite forwards;
         }
 
         .bullet.backwards{
             transform: rotate(180deg);
             right: 47.25vw;
             top: 1vh;
-            animation: bullet-backwards 2s linear infinite forwards;
+            animation: bullet-backwards var(--bullet-ani-duration) linear infinite forwards;
         }
 
         @keyframes bullet-forwards {
