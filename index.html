@@ -111,6 +111,10 @@
             padding-bottom: var(--outer-padding);
         }
 
+        .actors, .q-1, .q-2, .t-1, .t-2, .subtitle, .release {
+            animation: initial-appear-2 calc(var(--bullet-ani-duration)) linear 1 forwards;
+        } 
+
         /* Actors */
         .actors {
             grid-area: actors;
@@ -185,15 +189,17 @@
         }
         .e-1 {
             grid-area: e-1;
+            animation: initial-appear-1 calc(var(--bullet-ani-duration)) linear 1 forwards;
         }
         .n {
             grid-area: n;
         }
         .e-2 {
+            animation: initial-appear-1 calc(var(--bullet-ani-duration)) linear 1 forwards;
             grid-area: e-2;
         }
         .t-2 {
-            grid-area: t-2
+            grid-area: t-2;
         }
 
         .title > p {
@@ -238,6 +244,31 @@
             top: -10vh;
             animation: bullet-backwards var(--bullet-ani-duration) cubic-bezier(0.25, 1, 1, 1) infinite forwards;
         }
+
+        @keyframes initial-appear-1 {
+            from {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            60% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes initial-appear-2 {
+            from {
+                opacity: 0;
+            }
+            60% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
         @keyframes bullet-forwards {
             to {
                 transform: translateY(110vh);
