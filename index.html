@@ -134,16 +134,27 @@
             width: 15vh;
             z-index: 1
         }
+        
         .gun.upside{
             grid-area: gun-upside;
             justify-self: flex-end;
             transform: translateY(-2.5vh);
         }
+
         .gun.downside{
             grid-area: gun-downside;
             justify-self: flex-start;
             align-self: flex-end;
             transform: translateY(2.5vh) rotate(180deg);
+        }
+
+        .gun.upside > .flash {
+            animation: flash-upwards var(--bullet-ani-duration) linear infinite forwards;
+
+        }
+
+        .gun.downside > .flash {
+            animation: flash-upwards var(--bullet-ani-duration) linear infinite reverse;
         }
 
         /* Quote */
@@ -191,10 +202,6 @@
             justify-self: center;
         }
         
-        /*.t-2, .t-1 {
-            animation: glitch calc(var(--bullet-ani-duration)*2) steps(1, end) infinite forwards;
-        }*/
-        
         /* Release */
         .release {
             grid-area: release;
@@ -238,19 +245,21 @@
             }
         }
 
-        @keyframes glitch {
-            24%{
-                transform: scaleY(1);
+        @keyframes flash-upwards {
+            from {
+                opacity: 0;
+            }
+            20% {
+                opcaity: 0;
             }
             25% {
-                transform: scaleY(-1);
+                opacity: 1;
             }
-
-            74% {
-                transform: scaleY(-1);
+            80% {
+                opacity: 0;
             }
-            75% {
-                transform: scaleY(1);
+            to {
+                opacity: 0;
             }
         }
 
