@@ -46,9 +46,14 @@
         /* 
             CSS STYLING
         */
+        :root {
+            --background-dark: #0D0404;
+            --background-light: #021226
+        }
+
         body {
             margin: 0;
-            background: #0D0404;
+            background: var(--background-dark);
             overflow: hidden;
         }
 
@@ -66,7 +71,7 @@
                 "quote-2 quote-2 gun-downside release release";
             margin: 0 auto;
             aspect-ratio: 1 / 1.141;
-            background: linear-gradient(to left, #0D0404, #021226 50%, #0D0404 100%);
+            background: linear-gradient(to left, var(--background-dark), var(--background-light) 50%, var(--background-dark) 100%);
         }
 
         /* Shared */
