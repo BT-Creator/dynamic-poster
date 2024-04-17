@@ -51,6 +51,7 @@
             --background-light: #021226;
             --typo-color: #F2F2F2;
             --bullet-ani-duration: 2s;
+            --outer-padding: 1rem;
         }
 
         body {
@@ -63,8 +64,6 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             grid-template-rows: 1fr 2rem 12vh 1fr;
-            grid-column-gap: 0px;
-            grid-row-gap: 0px;
             max-height: 100vh;
             grid-template-areas: 
                 "actors actors gun-upside quote-1 quote-1"
@@ -74,6 +73,8 @@
             margin: 0 auto;
             aspect-ratio: 1 / 1.141;
             background: linear-gradient(to left, var(--background-dark), var(--background-light) 50%, var(--background-dark) 100%);
+            border-left: var(--typo-color) 2px solid;
+            border-right: var(--typo-color) 2px solid;
         }
 
         /* Shared */
@@ -88,16 +89,21 @@
             align-self: flex-end;
         }
 
+        .actors, .q-2{
+            padding-left: var(--outer-padding);
+        }
+
         .release, .q-1 {
             text-align: right;
+            padding-right: var(--outer-padding);
         }
 
         .actors, .q-1 {
-            padding-top: 1rem;
+            padding-top: var(--outer-padding);
         }
 
         .q-2, .release {
-            padding-bottom: 1rem;
+            padding-bottom: var(--outer-padding);
         }
 
         /* Actors */
