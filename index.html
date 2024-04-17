@@ -193,7 +193,7 @@
         }
         
         .t-2, .t-1 {
-            animation: glitch calc(var(--bullet-ani-duration)*2) linear infinite forwards;
+            animation: glitch calc(var(--bullet-ani-duration)*2) steps(1, end) infinite forwards;
         }
         
         /* Release */
@@ -217,25 +217,25 @@
 
         .bullet.forwards{
             left: 47.25vw;
-            top: 1vh;
-            animation: bullet-forwards var(--bullet-ani-duration) linear infinite forwards;
+            top: -10vh;
+            animation: bullet-forwards var(--bullet-ani-duration) cubic-bezier(0.25, 1, 1, 1) infinite forwards;
         }
 
         .bullet.backwards{
             transform: rotate(180deg);
             right: 47.25vw;
-            top: 1vh;
-            animation: bullet-backwards var(--bullet-ani-duration) linear infinite forwards;
+            top: -10vh;
+            animation: bullet-backwards var(--bullet-ani-duration) cubic-bezier(0.25, 1, 1, 1) infinite forwards;
         }
         @keyframes bullet-forwards {
             to {
-                transform: translateY(100vh);
+                transform: translateY(110vh);
             }
         }
 
         @keyframes bullet-backwards {
             to {
-                transform: translateY(100vh) rotate(180deg);
+                transform: translateY(110vh) rotate(180deg);
             }
         }
 
