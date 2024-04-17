@@ -46,9 +46,17 @@
         /* 
             CSS STYLING
         */
+        :root {
+            --background-dark: #0D0404;
+            --background-light: #021226;
+            --typo-color: #F2F2F2;
+            --bullet-ani-duration: 2s;
+            --outer-padding: 1rem;
+        }
+
         body {
             margin: 0;
-            background: #0D0404;
+            background: var(--background-dark);
             overflow: hidden;
         }
 
@@ -56,8 +64,6 @@
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             grid-template-rows: 1fr 2rem 12vh 1fr;
-            grid-column-gap: 0px;
-            grid-row-gap: 0px;
             max-height: 100vh;
             grid-template-areas: 
                 "actors actors gun-upside quote-1 quote-1"
@@ -66,31 +72,38 @@
                 "quote-2 quote-2 gun-downside release release";
             margin: 0 auto;
             aspect-ratio: 1 / 1.141;
-            background: linear-gradient(to left, #0D0404, #021226 50%, #0D0404 100%);
+            background: linear-gradient(to left, var(--background-dark), var(--background-light) 50%, var(--background-dark) 100%);
+            border-left: var(--typo-color) 2px solid;
+            border-right: var(--typo-color) 2px solid;
         }
 
         /* Shared */
         * {
             font-family: "Rubik", sans-serif;
             font-optical-sizing: auto;
-            color: #F2F2F2;
+            color: var(--typo-color);
         }:is(svg){
-            fill: #F2F2F2;
+            fill: var(--typo-color);
         }
         .q-2, .downside, .release {
             align-self: flex-end;
         }
 
+        .actors, .q-2{
+            padding-left: var(--outer-padding);
+        }
+
         .release, .q-1 {
             text-align: right;
+            padding-right: var(--outer-padding);
         }
 
         .actors, .q-1 {
-            padding-top: 1rem;
+            padding-top: var(--outer-padding);
         }
 
         .q-2, .release {
-            padding-bottom: 1rem;
+            padding-bottom: var(--outer-padding);
         }
 
         /* Actors */
@@ -179,7 +192,7 @@
         }
         
         .t-2, .t-1 {
-            animation: glitch 4s linear infinite forwards;
+            animation: glitch calc(var(--bullet-ani-duration)*2) linear infinite forwards;
         }
         
         /* Release */
@@ -204,14 +217,14 @@
         .bullet.forwards{
             left: 47.25vw;
             top: 1vh;
-            animation: bullet-forwards 2s linear infinite forwards;
+            animation: bullet-forwards var(--bullet-ani-duration) linear infinite forwards;
         }
 
         .bullet.backwards{
             transform: rotate(180deg);
             right: 47.25vw;
             top: 1vh;
-            animation: bullet-backwards 2s linear infinite forwards;
+            animation: bullet-backwards var(--bullet-ani-duration) linear infinite forwards;
         }
 
         @keyframes bullet-forwards {
