@@ -140,8 +140,9 @@
         /* TODO: Scale guns based on screen size */
         .gun {
             height: auto;
-            width: 15vh;
-            z-index: 1
+            width: 20vw;
+            z-index: 1; 
+            max-width: 140px;
         }
 
         .gun.upside{
@@ -179,7 +180,7 @@
             grid-area: quote-2;
         }
 
-        /* Logo */
+        /* Logo */ 
         .subtitle{
             grid-area: subtitle;
             justify-self: center;
@@ -209,8 +210,9 @@
         }
 
         .mark {
-            width: 9vh;
+            width: 15vw;
             justify-self: center;
+            max-width: 84px;
         }
         
         /* Release */
@@ -227,21 +229,27 @@
         }
 
         /* Bullets */
+        .bullets{
+            position: absolute;
+            top: 1vh;
+            left: calc(50vw - (15vw / 2));
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            width: 15vw;
+            max-width: 90px;
+        }
+
         .bullet {
             width: 1.5vh;
-            position: absolute;
         }
 
         .bullet.forwards{
-            left: 47.75vw;
-            top: -10vh;
             animation: bullet-forwards var(--bullet-ani-duration) cubic-bezier(0.25, 1, 1, 1) infinite forwards;
         }
 
         .bullet.backwards{
             transform: rotate(180deg);
-            right: 47.75vw;
-            top: -10vh;
             animation: bullet-backwards var(--bullet-ani-duration) cubic-bezier(0.25, 1, 1, 1) infinite forwards;
         }
 
@@ -296,6 +304,24 @@
             }
             to {
                 opacity: 0;
+            }
+        }
+
+        @media screen and (width <= 850px) {
+            html{
+                height: 100vh;
+            }
+
+            main, body {
+                aspect-ratio: unset;
+                height: 100vh;
+                width: 100vw;
+            }
+        }
+
+        @media screen and (width > 850px){
+            .bullets {
+                left: calc(50vw - (90px / 2))
             }
         }
 
@@ -364,7 +390,7 @@
         </section>
     </main>
     <div class="bullets">
-        <svg class="bullet backwards" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        <svg class="bullet forwards" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 10.76 53.92">
             <defs>
                 <style>
@@ -381,7 +407,7 @@
             <path d="M0,43.66c.04,5.36,1.42,10.27,5.38,10.27,3.96,0,5.34-4.91,5.38-10.27H0Z" />
             <path class="trail" d="M5.38,0L0,40.94c3.94,2.16,7.88,2,10.76,0" />
         </svg>
-        <svg class="bullet forwards" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        <svg class="bullet backwards" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 10.76 53.92">
             <defs>
                 <style>
