@@ -123,10 +123,10 @@
             gap: 1em;
         }:is(.f-name){
             font-weight: 500;
-            font-size: 1em;
+            font-size: 0.8em;
         }:is(.l-name){
             font-weight: 700;
-            font-size: 1.5em;
+            font-size: 1em;
         }:is(.role){
             font-weight: 300;
             font-size: 0.8em;
@@ -237,11 +237,11 @@
             flex-flow: row nowrap;
             justify-content: space-between;
             width: 15vw;
-            max-width: 90px;
+            max-width: 84px;
         }
 
         .bullet {
-            width: 1.5vh;
+            width: 1.5vw;
         }
 
         .bullet.forwards{
@@ -316,12 +316,29 @@
                 aspect-ratio: unset;
                 height: 100vh;
                 width: 100vw;
+                border-left: unset;
+                border-right: unset;
             }
         }
 
         @media screen and (width > 850px){
             .bullets {
                 left: calc(50vw - (90px / 2))
+            }
+            .f-name{
+                font-weight: 500;
+                font-size: 1em;
+            }
+            .l-name{
+                font-weight: 700;
+                font-size: 1.5em;
+            }.role{
+                font-weight: 300;
+                font-size: 0.8em;
+            }.actor{
+                display: flex;
+                flex-flow: column nowrap;
+                gap: 0.25em;
             }
         }
 
