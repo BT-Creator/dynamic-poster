@@ -52,6 +52,13 @@
             --typo-color: rgb(4, 5, 6);
             --bullet-ani-duration: 2s;
             --outer-padding: 1rem;
+            --max-mark-size: 90px;
+            --dynamic-mark-size: 15vw;
+        }
+
+        html{
+            height: 100vh;
+            width: 100vw;
         }
 
         body {
@@ -63,6 +70,8 @@
                 var(--background-dark) 0 296.15deg,var(--background-light) 0);
             background-size: calc(2*76px) 76px;
             overflow: hidden;
+            height: 100vh;
+            width: 100vw;
         }
 
         main{
@@ -76,10 +85,8 @@
                 "t-1 e-1 n e-2 t-2"
                 "quote-2 quote-2 gun-downside release release";
             margin: 0 auto;
-            aspect-ratio: 1 / 1.141;
             background: linear-gradient(to left, var(--background-light), var(--background-dark) 50%, var(--background-light) 100%);
-            border-left: var(--background-dark) 1vw solid;
-            border-right: var(--background-dark) 1vw solid;
+            height: 100vh;
         }
 
         /* Shared */
@@ -100,7 +107,7 @@
 
         .release, .q-1 {
             text-align: right;
-            padding-right: var(--outer-padding);
+            margin-right: var(--outer-padding);
         }
 
         .actors, .q-1 {
@@ -113,26 +120,27 @@
 
         .actors, .q-1, .q-2, .t-1, .t-2, .subtitle, .release {
             animation: initial-appear-2 calc(var(--bullet-ani-duration)) linear 1 forwards;
-        } 
+        }
+
+        .fl-c-nw{
+            display: flex;
+            flex-flow: column nowrap;
+        }
 
         /* Actors */
         .actors {
             grid-area: actors;
-            display: flex;
-            flex-flow: column nowrap;
             gap: 1em;
         }:is(.f-name){
             font-weight: 500;
-            font-size: 1em;
+            font-size: 0.8em;
         }:is(.l-name){
             font-weight: 700;
-            font-size: 1.5em;
+            font-size: 1em;
         }:is(.role){
             font-weight: 300;
             font-size: 0.8em;
         }:is(.actor){
-            display: flex;
-            flex-flow: column nowrap;
             gap: 0.25em;
         }
 
@@ -140,8 +148,9 @@
         /* TODO: Scale guns based on screen size */
         .gun {
             height: auto;
-            width: 15vh;
-            z-index: 1
+            width: 20vw;
+            z-index: 1; 
+            max-width: 140px;
         }
 
         .gun.upside{
@@ -179,7 +188,7 @@
             grid-area: quote-2;
         }
 
-        /* Logo */
+        /* Logo */ 
         .subtitle{
             grid-area: subtitle;
             justify-self: center;
@@ -209,15 +218,14 @@
         }
 
         .mark {
-            width: 9vh;
+            width: var(--dynamic-mark-size);
             justify-self: center;
+            max-width: var(--max-mark-size);
         }
         
         /* Release */
         .release {
             grid-area: release;
-            display: flex;
-            flex-flow: column nowrap;
             gap: 0.25em;
         }:is(.pre-amble){
             font-weight: 500;
@@ -227,21 +235,28 @@
         }
 
         /* Bullets */
-        .bullet {
-            width: 1.5vh;
+        .bullets{
             position: absolute;
+            top: 1vh;
+            left: calc(50vw - (min(var(--dynamic-mark-size), var(--max-mark-size)) / 2));
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            width: var(--dynamic-mark-size);
+            max-width: var(--max-mark-size);
+        }
+
+        .bullet {
+            width: calc(var(--dynamic-mark-size)/10);
+            max-width: calc(var(--max-mark-size)/10);
         }
 
         .bullet.forwards{
-            left: 47.75vw;
-            top: -10vh;
             animation: bullet-forwards var(--bullet-ani-duration) cubic-bezier(0.25, 1, 1, 1) infinite forwards;
         }
 
         .bullet.backwards{
             transform: rotate(180deg);
-            right: 47.75vw;
-            top: -10vh;
             animation: bullet-backwards var(--bullet-ani-duration) cubic-bezier(0.25, 1, 1, 1) infinite forwards;
         }
 
@@ -299,23 +314,50 @@
             }
         }
 
+        @media screen and (width > 850px){
+            main, body {
+                aspect-ratio: 1 / 1.141;
+                border-left: var(--background-dark) 1vw solid;
+                border-right: var(--background-dark) 1vw solid;
+            }
+
+            .bullets {
+                left: calc(50vw - (calc(var(--max-mark-size) / 10 * 8) / 2))
+            }
+            .f-name{
+                font-weight: 500;
+                font-size: 1em;
+            }
+            .l-name{
+                font-weight: 700;
+                font-size: 1.5em;
+            }.role{
+                font-weight: 300;
+                font-size: 0.8em;
+            }.actor{
+                display: flex;
+                flex-flow: column nowrap;
+                gap: 0.25em;
+            }
+        }
+
     </style>
 </head>
 
 <body>
     <main>
-        <section class="actors">
-            <div class="actor">
+        <section class="actors fl-c-nw">
+            <div class="actor fl-c-nw">
                 <p class="f-name">John David</p>
                 <p class="l-name">Washington</p>
                 <p class="role">as the Protagoinist</p>
             </div>
-            <div class="actor">
+            <div class="actor fl-c-nw">
                 <p class="f-name">Robert</p>
                 <p class="l-name">Pattinson</p>
                 <p class="role">as Neil</p>
             </div>
-            <div class="actor">
+            <div class="actor fl-c-nw">
                 <p class="f-name">Elizabeth</p>
                 <p class="l-name">Debicki</p>
                 <p class="role">as Kat</p>
@@ -358,13 +400,13 @@
             <path class="flash"
                 d="M0,295.55l10.55-9.57-5.29,60.27,9.57-27.74,14.76,86.1,13.93-83.23,7.58,14.11-4.23-47.59,12.31,10.52-24.11-51.59c-1.65-2.84-5.29-3.81-8.13-2.17-.99.58-1.8,1.43-2.32,2.45L0,295.55Z" />
         </svg>
-        <section class="release">
+        <section class="release fl-c-nw">
             <p class="pre-amble">In theathers</p>
             <p class="release-date">August 2020</p>
         </section>
     </main>
     <div class="bullets">
-        <svg class="bullet backwards" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        <svg class="bullet forwards" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 10.76 53.92">
             <defs>
                 <style>
@@ -381,7 +423,7 @@
             <path d="M0,43.66c.04,5.36,1.42,10.27,5.38,10.27,3.96,0,5.34-4.91,5.38-10.27H0Z" />
             <path class="trail" d="M5.38,0L0,40.94c3.94,2.16,7.88,2,10.76,0" />
         </svg>
-        <svg class="bullet forwards" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        <svg class="bullet backwards" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 10.76 53.92">
             <defs>
                 <style>
