@@ -52,6 +52,13 @@
             --typo-color: rgb(4, 5, 6);
             --bullet-ani-duration: 2s;
             --outer-padding: 1rem;
+            --max-mark-size: 90px;
+            --dynamic-mark-size: 15vw;
+        }
+
+        html{
+            height: 100vh;
+            width: 100vw;
         }
 
         body {
@@ -63,6 +70,8 @@
                 var(--background-dark) 0 296.15deg,var(--background-light) 0);
             background-size: calc(2*76px) 76px;
             overflow: hidden;
+            height: 100vh;
+            width: 100vw;
         }
 
         main{
@@ -76,10 +85,8 @@
                 "t-1 e-1 n e-2 t-2"
                 "quote-2 quote-2 gun-downside release release";
             margin: 0 auto;
-            aspect-ratio: 1 / 1.141;
             background: linear-gradient(to left, var(--background-light), var(--background-dark) 50%, var(--background-light) 100%);
-            border-left: var(--background-dark) 1vw solid;
-            border-right: var(--background-dark) 1vw solid;
+            height: 100vh;
         }
 
         /* Shared */
@@ -100,7 +107,7 @@
 
         .release, .q-1 {
             text-align: right;
-            padding-right: var(--outer-padding);
+            margin-right: var(--outer-padding);
         }
 
         .actors, .q-1 {
@@ -113,13 +120,16 @@
 
         .actors, .q-1, .q-2, .t-1, .t-2, .subtitle, .release {
             animation: initial-appear-2 calc(var(--bullet-ani-duration)) linear 1 forwards;
-        } 
+        }
+
+        .fl-c-nw{
+            display: flex;
+            flex-flow: column nowrap;
+        }
 
         /* Actors */
         .actors {
             grid-area: actors;
-            display: flex;
-            flex-flow: column nowrap;
             gap: 1em;
         }:is(.f-name){
             font-weight: 500;
@@ -131,8 +141,6 @@
             font-weight: 300;
             font-size: 0.8em;
         }:is(.actor){
-            display: flex;
-            flex-flow: column nowrap;
             gap: 0.25em;
         }
 
@@ -210,16 +218,14 @@
         }
 
         .mark {
-            width: 15vw;
+            width: var(--dynamic-mark-size);
             justify-self: center;
-            max-width: 84px;
+            max-width: var(--max-mark-size);
         }
         
         /* Release */
         .release {
             grid-area: release;
-            display: flex;
-            flex-flow: column nowrap;
             gap: 0.25em;
         }:is(.pre-amble){
             font-weight: 500;
@@ -232,17 +238,17 @@
         .bullets{
             position: absolute;
             top: 1vh;
-            left: calc(50vw - (min(15vw, 84px) / 2));
+            left: calc(50vw - (min(var(--dynamic-mark-size), var(--max-mark-size)) / 2));
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
-            width: 15vw;
-            max-width: 84px;
+            width: var(--dynamic-mark-size);
+            max-width: var(--max-mark-size);
         }
 
         .bullet {
-            width: 1.5vw;
-            max-width: 9px;
+            width: calc(var(--dynamic-mark-size)/10);
+            max-width: calc(var(--max-mark-size)/10);
         }
 
         .bullet.forwards{
@@ -308,23 +314,15 @@
             }
         }
 
-        @media screen and (width <= 850px) {
-            html{
-                height: 100vh;
-            }
-
-            main, body {
-                aspect-ratio: unset;
-                height: 100vh;
-                width: 100vw;
-                border-left: unset;
-                border-right: unset;
-            }
-        }
-
         @media screen and (width > 850px){
+            main, body {
+                aspect-ratio: 1 / 1.141;
+                border-left: var(--background-dark) 1vw solid;
+                border-right: var(--background-dark) 1vw solid;
+            }
+
             .bullets {
-                left: calc(50vw - (90px / 2))
+                left: calc(50vw - (calc(var(--max-mark-size) / 10 * 8) / 2))
             }
             .f-name{
                 font-weight: 500;
@@ -348,18 +346,18 @@
 
 <body>
     <main>
-        <section class="actors">
-            <div class="actor">
+        <section class="actors fl-c-nw">
+            <div class="actor fl-c-nw">
                 <p class="f-name">John David</p>
                 <p class="l-name">Washington</p>
                 <p class="role">as the Protagoinist</p>
             </div>
-            <div class="actor">
+            <div class="actor fl-c-nw">
                 <p class="f-name">Robert</p>
                 <p class="l-name">Pattinson</p>
                 <p class="role">as Neil</p>
             </div>
-            <div class="actor">
+            <div class="actor fl-c-nw">
                 <p class="f-name">Elizabeth</p>
                 <p class="l-name">Debicki</p>
                 <p class="role">as Kat</p>
@@ -402,7 +400,7 @@
             <path class="flash"
                 d="M0,295.55l10.55-9.57-5.29,60.27,9.57-27.74,14.76,86.1,13.93-83.23,7.58,14.11-4.23-47.59,12.31,10.52-24.11-51.59c-1.65-2.84-5.29-3.81-8.13-2.17-.99.58-1.8,1.43-2.32,2.45L0,295.55Z" />
         </svg>
-        <section class="release">
+        <section class="release fl-c-nw">
             <p class="pre-amble">In theathers</p>
             <p class="release-date">August 2020</p>
         </section>
