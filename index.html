@@ -232,7 +232,7 @@
         .bullets{
             position: absolute;
             top: 1vh;
-            left: calc(50vw - (15vw / 2));
+            left: calc(50vw - (min(15vw, 84px) / 2));
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
@@ -242,6 +242,7 @@
 
         .bullet {
             width: 1.5vw;
+            max-width: 9px;
         }
 
         .bullet.forwards{
